@@ -24,6 +24,9 @@
 #define NB_TURNS             10
 #define CELLS_PER_TURN       3
 #define GENERATIONS_PER_TURN 1
+#define SPECIAL_TURN_EVERY   3   /* un tour sur 3 est un tour accelere */
+#define SPECIAL_GENERATIONS  2   /* nombre de generations d'un tour accelere */
+#define FIRST_RANK           0   /* rang du premier joueur dans un tour */
 #define ZONE_WIDTH           (WIDTH / NB_PLAYERS)   /* largeur de la zone de chaque joueur */
 
 /* Codage : unite = etat actuel, dizaine = etat futur */
@@ -106,6 +109,23 @@ void world_apply_next_state(void)
         for (int x = 0; x < WIDTH; x++)
             world[y][x] = cell_next_state(x, y);
 }
+
+/* Nombre de generations du tour : SPECIAL_GENERATIONS tous les
+   SPECIAL_TURN_EVERY tours (tour accelere), GENERATIONS_PER_TURN sinon */
+int generations_for_turn(int turn)
+{
+    if (turn % SPECIAL_TURN_EVERY == 0)
+        return SPECIAL_GENERATIONS;
+    return GENERATIONS_PER_TURN;
+}
+
+/* Joueur qui joue au rang donne (FIRST_RANK = premier) pendant ce tour :
+   le premier joueur change a chaque tour */
+int player_at_rank(int turn, int rank)
+{
+    return PLAYER_1 + (turn - 1 + rank) % NB_PLAYERS;
+}
+
 
 /* Fait evoluer la grille de GENERATIONS_PER_TURN generations */
 void world_evolve(void)
