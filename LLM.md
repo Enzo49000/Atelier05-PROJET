@@ -8,7 +8,7 @@
 - Des captures d'écran de notre éditeur et de notre terminal
 
 ## Prompts clés
-1. « Propose nous différentes iddées pour que l'on puisse crée une regle du jeu »
+1. « Propose-nous différentes idées pour que l'on puisse créer une règle du jeu »
    - Résultat : l'IA a crée les regles de la première version du jeu à deux joueurs et nous l'a expliquée.
 
 ## Rôle de l'IA
