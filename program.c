@@ -127,10 +127,10 @@ int player_at_rank(int turn, int rank)
 }
 
 
-/* Fait evoluer la grille de GENERATIONS_PER_TURN generations */
-void world_evolve(void)
+/* Fait evoluer la grille du nombre de generations donne */
+void world_evolve(int generations)
 {
-    for (int g = 0; g < GENERATIONS_PER_TURN; g++)
+    for (int g = 0; g < generations; g++)
     {
         world_compute_next_state();
         world_apply_next_state();
@@ -275,16 +275,20 @@ void print_end_of_game(void)
 
 int main(void)
 {
-    for (int turn = 1; turn <= NB_TURNS; turn++)
+        for (int turn = 1; turn <= NB_TURNS; turn++)
     {
+        int generations = generations_for_turn(turn);
+
         printf("\n===== Tour %d/%d =====\n", turn, NB_TURNS);
+        if (generations > GENERATIONS_PER_TURN)
+            printf("TOUR ACCELERE : la grille va evoluer de %d generations !\n", generations);
         world_print();
         print_scores();
 
-        for (int player = PLAYER_1; player <= PLAYER_2; player++)
-            player_place_cells(player);
+        for (int rank = FIRST_RANK; rank < NB_PLAYERS; rank++)
+            player_place_cells(player_at_rank(turn, rank));
 
-        world_evolve();
+        world_evolve(generations);
         printf("\nLa grille evolue...\n");
     }
 
