@@ -9,7 +9,9 @@
 
 ## Prompts clés
 1. « Propose-nous différentes idées pour que l'on puisse créer une règle du jeu »
-   - Résultat : l'IA a crée les regles de la première version du jeu à deux joueurs et nous l'a expliquée.
+  - Résultat : l'IA a crée les regles de la première version du jeu à deux joueurs et nous l'a expliquée.
+2. « On peut rajouter une dernière règle ? »
+  - Résultat : l'IA nous a proposé le tour de renfort (1 cellule en plus tous les 4 tours) 
 
 ## Rôle de l'IA
 - L'IA a écrit la première version du code du jeu à deux joueurs, en partant de notre code de
