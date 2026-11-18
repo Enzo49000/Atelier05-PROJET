@@ -121,6 +121,16 @@ int generations_for_turn(int turn)
     return GENERATIONS_PER_TURN;
 }
 
+/* Nombre de cellules a poser pendant le tour : CELLS_PER_TURN + BONUS_CELLS
+   tous les BONUS_TURN_EVERY tours (tour de renfort), CELLS_PER_TURN sinon */
+int cells_for_turn(int turn)
+{
+    if (turn % BONUS_TURN_EVERY == 0)
+        return CELLS_PER_TURN + BONUS_CELLS;
+    return CELLS_PER_TURN;
+}
+
+
 /* Joueur qui joue au rang donne (FIRST_RANK = premier) pendant ce tour :
    le premier joueur change a chaque tour */
 int player_at_rank(int turn, int rank)
