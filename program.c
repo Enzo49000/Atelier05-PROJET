@@ -242,19 +242,19 @@ int ask_number(int player, char axis)
     return value;
 }
 
-/* Fait poser CELLS_PER_TURN cellules a un joueur */
-void player_place_cells(int player)
+/* Fait poser nb_cells cellules a un joueur */
+void player_place_cells(int player, int nb_cells)
 {
     int first_x = (player - PLAYER_1) * ZONE_WIDTH;
 
-    for (int i = 1; i <= CELLS_PER_TURN; i++)
+    for (int i = 1; i <= nb_cells; i++)
     {
         int x, y;
         bool valid;
 
         do
         {
-            printf("\nJoueur %d (%c) : cellule %d/%d\n", player, symbols[player], i, CELLS_PER_TURN);
+            printf("\nJoueur %d (%c) : cellule %d/%d\n", player, symbols[player], i, nb_cells);
             x = ask_number(player, 'x');
             y = ask_number(player, 'y');
 
@@ -287,18 +287,21 @@ void print_end_of_game(void)
 
 int main(void)
 {
-        for (int turn = 1; turn <= NB_TURNS; turn++)
+    for (int turn = 1; turn <= NB_TURNS; turn++)
     {
         int generations = generations_for_turn(turn);
+        int nb_cells = cells_for_turn(turn);
 
         printf("\n===== Tour %d/%d =====\n", turn, NB_TURNS);
         if (generations > GENERATIONS_PER_TURN)
             printf("TOUR ACCELERE : la grille va evoluer de %d generations !\n", generations);
+        if (nb_cells > CELLS_PER_TURN)
+            printf("TOUR DE RENFORT : chaque joueur pose %d cellules !\n", nb_cells);
         world_print();
         print_scores();
 
         for (int rank = FIRST_RANK; rank < NB_PLAYERS; rank++)
-            player_place_cells(player_at_rank(turn, rank));
+            player_place_cells(player_at_rank(turn, rank), nb_cells);
 
         world_evolve(generations);
         printf("\nLa grille evolue...\n");
