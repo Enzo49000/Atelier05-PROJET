@@ -26,6 +26,8 @@
 #define GENERATIONS_PER_TURN 1
 #define SPECIAL_TURN_EVERY   3   /* un tour sur 3 est un tour accelere */
 #define SPECIAL_GENERATIONS  2   /* nombre de generations d'un tour accelere */
+#define BONUS_TURN_EVERY     4   /* un tour sur 4 est un tour de renfort */
+#define BONUS_CELLS          1   /* cellules en plus lors d'un tour de renfort */
 #define FIRST_RANK           0   /* rang du premier joueur dans un tour */
 #define ZONE_WIDTH           (WIDTH / NB_PLAYERS)   /* largeur de la zone de chaque joueur */
 
