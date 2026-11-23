@@ -265,6 +265,7 @@ void player_place_cells(int player, int nb_cells)
         } while (!valid);
 
         place_cell(x, y, player);
+        printf("\n");
         world_print();
     }
 }
