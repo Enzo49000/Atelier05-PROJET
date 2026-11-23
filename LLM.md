@@ -17,3 +17,4 @@
 - L'IA a écrit la première version du code du jeu à deux joueurs, en partant de notre code de
   l'atelier 5, et nous a expliquée sur les lignes là ou nous bloquions.
 - Nous : nous avons compilé et testé le jeu et joué plusieurs parties.
+- L'IA nous a corrigé un beug d'affcihage du tableau lié au saut de ligne
